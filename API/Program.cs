@@ -1,3 +1,4 @@
+using API.Middleware;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,8 @@ var app = builder.Build();
 app.UseCors(x=>x.AllowAnyHeader().AllowAnyMethod()
     .WithOrigins("http://localhost:4200","https://localhost:4200"));
 // Configure the HTTP request pipeline.
+
+app.UseMiddleware<ExceptionMiddleware>();
 app.MapControllers();
 
 try
